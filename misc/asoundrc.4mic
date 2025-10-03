@@ -9,27 +9,23 @@ pcm.!default {
      slave.pcm "dsnooper"
    }
 }
-
-pcm.dmixer {
-        type dmix
-        ipc_key 353289
-        slave {
-                pcm "hw:2,0"
-                period_time 0
-                period_size 1024
-                buffer_size 4096
-        }
-        bindings {
-                0 0
-                1 1
-        }
-}
 pcm.dsnooper {
     type dsnoop
     ipc_key 816357492
     ipc_key_add_uid 0
     ipc_perm 0666
     slave {
+        pcm "hw:seeed4micvoicec"
+        channels 1
+    }
+}
+
+pcm.mszeer {
+  capture.pcm {
+     type plug
+     slave.pcm "dsnooper"
+   }
+  slave {
         pcm "hw:seeed4micvoicec"
         channels 1
     }
